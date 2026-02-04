@@ -3,16 +3,49 @@ import { useState } from "react";
 import "./ExpenseForm.css"
 
 const ExpenseForm = (props) => {
-    const submitHandler = (event) => {
- event.preventDefault();
- const expenseData = {
-    title: enteredTitle,
-    price: enteredPrice,
-    date: new Date(enteredDate)
+    const [userInput, setuserInput] = useState({
+        enteredTitle: "",
+        enteredPrice: "",
+        enteredDate: ""
+    });
+
+    console.log(userInput);
+
+    const titleChangeHandler = (event) => {
+        setuserInput({
+            ...userInput,
+            enteredTitle: event.target.value
+        });
  };
-   setEnteredTitle('')
-  console.log("Form submitted!");
+
+  const priceChangeHandler = (event) => {
+    setuserInput({
+        ...userInput,
+        enteredPrice: event.target.value
+    });
 }
+    const dateChangeHandler = (event) => {
+    setuserInput({
+        ...userInput,
+        enteredDate: event.target.value
+    });
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+        const expenseData = {
+            title: enteredTitle,
+            price: enteredPrice,
+            date: new Date(enteredDate)
+        };
+        props.onSaveExpenseData(expenseData);
+        setEnteredTitle('');
+        setEnteredPrice('');
+        setEnteredDate('');
+        console.log(expenseData);
+}
+   setEnteredTitle('');
+    };
+
 
     return (
         <form onSubmit={submitHandler}>
