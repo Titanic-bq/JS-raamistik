@@ -1,5 +1,5 @@
 
-
+import { useState } from "react";
 import Expenses from "./components/Expenses.jsx";
 import NewExpense from "./UI/NewExpense/NewExpense.jsx";
 import "./App.css"
@@ -28,15 +28,20 @@ const App = () => {
         }
     ];
 
+    const App = () => {
+        const [expenses, setExpenses] = useState(DYMMY_EXPENSES);
+ }
+
     const addExpenseHandler = (expense) => {
     console.log("In App.js");
     console.log(expense);
+    setExpenses([expense, ...previousExpenses]);
 }
 
 return (
     <div className="App">
         <NewExpense onAddExpense={addExpenseHandler}></NewExpense>
-            <Expenses expenses={DYMMY_EXPENSES} />
+            <Expenses expenses={expenses} />
     </div>
   );
 }
