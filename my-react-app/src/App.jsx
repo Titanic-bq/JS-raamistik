@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Expenses from "./components/Expenses.jsx";
 import NewExpense from "./components/NewExpense/NewExpense.jsx";
 import "./App.css"
@@ -7,26 +7,8 @@ import "./App.css"
 
 
 const App = () => {
-    const DYMMY_EXPENSES =[
-        {
-            id:"id1",
-            date: new Date(2023, 10, 12),
-            title: "New book" ,
-            price: 30.99
-        },
-         {
-            id:"id2",
-            date: new Date(2024, 10, 12),
-            title: "New Jeans" ,
-            price: 99.99
-        },
-        {
-            id:"id3",
-            date: new Date(2024, 10, 25),
-            title: "New Phone" ,
-            price: 599.99
-        }
-    ];
+    const DYMMY_EXPENSES =
+    []
 
     const App = () => {
         const [expenses, setExpenses] = useState(DYMMY_EXPENSES);

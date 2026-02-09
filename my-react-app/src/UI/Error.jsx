@@ -1,9 +1,5 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-
-
-
-
 import Card from './Card';
 import Button from './Button';
 import './Error.css';
