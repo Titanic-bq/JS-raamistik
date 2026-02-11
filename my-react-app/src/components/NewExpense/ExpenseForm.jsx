@@ -1,10 +1,11 @@
 
-import { Fragment,useRef,useState } from "react";
+import { useRef,useState } from "react";
 import "./ExpenseForm.css"
 import Error from './UI/Error';
+
 const ExpenseForm = (props) => {
    const [error, setError] = useState(null);
-   console.log(error);
+
     const titleInputRef = useRef();
     const amountInputRef = useRef();
     const dateInputRef = useRef();
@@ -14,17 +15,21 @@ const ExpenseForm = (props) => {
     }
 
     const submitHandler = (event) => {
+        event.preventDefault();
         const enteredTitle = titleInputRef.current.value;
-        const enteredPrice = amountInputRef.current.value;
+        const enteredAmount = amountInputRef.current.value;
         const enteredDate = dateInputRef.current.value;
 
-        event.preventDefault();
-
-        if(enteredTitle.trim().length === 0 || enteredAmount.trim().length ===
-         0 || enteredDate.trim().length === 0){
+        if
+        (enteredTitle.trim().length === 0 ||
+         enteredAmount.trim().length === 0 ||
+          enteredDate.trim().length === 0
+        ){
             setError({
                 title: 'Invalid input',
-                message: 'Please enter a valid title, amount and date (non-empty values).'
+
+                message:
+                 'Please enter a valid title, amount and date (non-empty values).'
             });
             return;
         }
@@ -33,11 +38,14 @@ const ExpenseForm = (props) => {
             amount: +enteredAmount,
             date: new Date(enteredDate)
         };
+
         props.onSaveExpenseData(expenseData);
         props.onCancel();
+
         titleInputRef.current.value = '';
         amountInputRef.current.value = '';
         dateInputRef.current.value = '';
+
 }
    const calcelHandler = (event) => {
         event.preventDefault();
@@ -79,6 +87,8 @@ return(
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="type" onClick={props.onCancle}>Cancel
+                </button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
